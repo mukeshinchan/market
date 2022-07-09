@@ -24,7 +24,7 @@ st.set_page_config(layout="wide")
 col1,col2,col3=st.columns([3,1,2])
 with col1:
      out = df.groupby('Sub-Category', as_index=False, sort=False).agg({'Sales':'sum'})
-     st.plotly_chart(px.bar(out,y='Sales',x='Category',color='Sub-Category',color_discrete_sequence=['#3333ff', '#0d0887','#9999ff'] ,width=500,height=500))
+     st.plotly_chart(px.bar(out,y='Sales',x='Sub-Category',color='Sub-Category',color_discrete_sequence=['#3333ff', '#0d0887','#9999ff'] ,width=500,height=500))
 with col2:
     out = df.groupby('Category', as_index=False, sort=False).agg({'Sales':'sum'})
     st.plotly_chart(px.bar(out,y='Sales',x='Category',color='Category',color_discrete_sequence=['#3333ff', '#0d0887','#9999ff'] ,width=500,height=500))
