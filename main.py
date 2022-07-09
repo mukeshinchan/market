@@ -34,7 +34,7 @@ fig = go.Figure()
 out2 = df.groupby('Customer ID', as_index=False, sort=False).agg({'Sales':'sum','Profit':'sum'})
 Cust_above_avg=out2[out2['Sales']>=out2['Sales'].mean()]
 
-fig.add_trace(
+c=fig.add_trace(
     go.Scatter(
         y=Cust_above_avg['Sales'],
         x=Cust_above_avg['Customer ID']
@@ -46,4 +46,4 @@ fig.add_trace(
         x=Cust_above_avg['Customer ID']
     ))
 
-st.ploly_chart(fig)
+st.ploly_chart(c)
