@@ -19,7 +19,7 @@ df['Shipping Cost'] = df['Shipping Cost'].str.replace(',','')
 df['Shipping Cost']=df['Shipping Cost'].astype(float)
 df['Postal Code']=df['Postal Code'].astype(str)
 
-col1,col2,col3=st.columns([5,1,2])
+col1,col2,col3=st.columns([6,1,3])
 with col1:
     ship_mode = df.groupby('Ship Mode', as_index=False, sort=False)['Ship Mode'].agg({'Ship Mode':'count'})
     ship_mode['Ship_Mode_Name']=df['Ship Mode'].unique()
