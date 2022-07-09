@@ -46,3 +46,4 @@ fig.add_trace(
         x=Cust_above_avg['Customer ID']
     ))
 
+st.ploly_chart(fig)
