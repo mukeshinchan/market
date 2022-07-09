@@ -24,11 +24,9 @@ with col1:
     ship_mode = df.groupby('Ship Mode', as_index=False, sort=False)['Ship Mode'].agg({'Ship Mode':'count'})
     ship_mode['Ship_Mode_Name']=df['Ship Mode'].unique()
     st.plotly_chart(px.pie(ship_mode,values='Ship Mode',names='Ship_Mode_Name',width=400,height=400,color_discrete_sequence=['#0d0887', '#9999ff', '#3333ff']))
-with col3:
-    st.write('f')
 with col2:
     out = df.groupby('Category', as_index=False, sort=False).agg({'Sales':'sum'})
-    st.plotly_chart(px.bar(out,y='Sales',x='Category', color_discrete_sequence=['#0d0887', '#9999ff', '#3333ff'],width=500,height=500))
+    st.plotly_chart(px.bar(out,y='Sales',x='Category', color_discrete_sequence=['#0d0887', '#9999ff', '#3333ff'],width=300,height=300))
     
 out2 = df.groupby('Customer ID', as_index=False, sort=False).agg({'Sales':'sum','Profit':'sum'})
 Cust_above_avg=out2[out2['Sales']>=out2['Sales'].mean()]
