@@ -21,15 +21,31 @@ df['Postal Code']=df['Postal Code'].astype(str)
 
 st.set_page_config(layout="wide")
 
-col1,col2,col3=st.columns([3,1,3])
+col1,col2,col3=st.columns([3,1,2])
 with col1:
     ship_mode = df.groupby('Ship Mode', as_index=False, sort=False)['Ship Mode'].agg({'Ship Mode':'count'})
     ship_mode['Ship_Mode_Name']=df['Ship Mode'].unique()
-    st.plotly_chart(px.pie(ship_mode,values='Ship Mode',names='Ship_Mode_Name',width=400,height=500,color_discrete_sequence=['#0d0887', '#9999ff', '#3333ff']))
+    st.plotly_chart(px.pie(ship_mode,values='Ship Mode',names='Ship_Mode_Name',width=500,height=500,color_discrete_sequence=['#0d0887', '#9999ff', '#3333ff']))
 with col2:
     out = df.groupby('Category', as_index=False, sort=False).agg({'Sales':'sum'})
-    st.plotly_chart(px.bar(out,y='Sales',x='Category',color='Category',color_discrete_sequence=,['#0d0887', '#9999ff', '#3333ff'] ,width=500,height=500))
+    st.plotly_chart(px.bar(out,y='Sales',x='Category',color='Category',color_discrete_sequence=['#3333ff', '#0d0887','#9999ff'] ,width=500,height=500))
     
 out2 = df.groupby('Customer ID', as_index=False, sort=False).agg({'Sales':'sum','Profit':'sum'})
 Cust_above_avg=out2[out2['Sales']>=out2['Sales'].mean()]
-st.plotly_chart(px.bar(Cust_above_avg,x='Customer ID', y='Sales',width=400,height=500))
+
+fig = go.Figure()
+
+fig.add_trace(
+    go.Scatter(
+        y=Cust_above_avg['Sales'],
+        x=Cust_above_avg['Customer ID']
+    ))
+
+fig.add_trace(
+    go.Bar(
+        y=Cust_above_avg['Sales'],
+        x=Cust_above_avg['Customer ID']
+    ))
+
+fig.show()
+st.plotly_chart(fig)
