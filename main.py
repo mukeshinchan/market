@@ -32,4 +32,4 @@ with col2:
     
 out2 = df.groupby('Customer ID', as_index=False, sort=False).agg({'Sales':'sum','Profit':'sum'})
 Cust_above_avg=out2[out2['Sales']>=out2['Sales'].mean()]
-st.plotly_chart(px.bar(Cust_above_avg,x='Customer ID', y='Sales',width=500,height=500))
+st.plotly_chart(px.bar(Cust_above_avg,x='Customer ID', y='Sales',width=1000,height=700))
