@@ -28,7 +28,7 @@ with col1:
     st.plotly_chart(px.pie(ship_mode,values='Ship Mode',names='Ship_Mode_Name',width=400,height=500,color_discrete_sequence=['#0d0887', '#9999ff', '#3333ff']))
 with col2:
     out = df.groupby('Category', as_index=False, sort=False).agg({'Sales':'sum'})
-    st.plotly_chart(px.bar(out,y='Sales',x='Category',color='Category',color_discrete_sequence=['#3333ff', '#9999ff',#0d0887] ,width=500,height=500))
+    st.plotly_chart(px.bar(out,y='Sales',x='Category',color='Category',color_discrete_sequence=['#3333ff', '#9999ff','#0d0887'] ,width=500,height=500))
     
 out2 = df.groupby('Customer ID', as_index=False, sort=False).agg({'Sales':'sum','Profit':'sum'})
 Cust_above_avg=out2[out2['Sales']>=out2['Sales'].mean()]
