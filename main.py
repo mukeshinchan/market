@@ -43,7 +43,7 @@ fig.add_trace(
 
 fig.add_trace(
     go.Bar(
-        y=Cust_above_avg['Profit'],
+        y=Cust_above_avg['Sales'].mean(),
         x=Cust_above_avg['Customer ID']
     ))
 
