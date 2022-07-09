@@ -21,10 +21,10 @@ df['Postal Code']=df['Postal Code'].astype(str)
 
 st.set_page_config(layout="wide")
 
-cat=list(df['Category'].unique())
-value = st.selectbox('Select Page',cat)
 col1,col2,col3=st.columns([3,1,2])
 with col1:
+    cat=list(df['Category'].unique())
+    value = st.selectbox('Select Category',cat)
      out = df.groupby(['Category','Sub-Category'], as_index=False, sort=False).agg({'Sales':'sum'})
      filt=out[out['Category']==value]
      st.plotly_chart(px.bar(filt,y='Sales',x='Sub-Category',color='Sub-Category',width=500,height=500))
