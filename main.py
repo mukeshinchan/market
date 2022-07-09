@@ -1,3 +1,4 @@
+from turtle import width
 import pandas as pd
 import plotly.express as px
 import streamlit as st
@@ -38,8 +39,7 @@ fig = go.Figure()
 fig.add_trace(
     go.Scatter(
         y=Cust_above_avg['Sales'],
-        x=Cust_above_avg['Customer ID']
-    ))
+        x=Cust_above_avg['Customer ID']))
 
 fig.add_trace(
     go.Bar(
@@ -47,5 +47,8 @@ fig.add_trace(
         x=Cust_above_avg['Customer ID']
     ))
 
+fig.update_layout(width=1200)
+fig.update_layout(height=650)
 fig.show()
+
 st.plotly_chart(fig)
