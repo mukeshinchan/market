@@ -30,11 +30,12 @@ with col2:
     out = df.groupby('Category', as_index=False, sort=False).agg({'Sales':'sum'})
     st.plotly_chart(px.bar(out,y='Sales',x='Category',color='Category',color_discrete_sequence=['#3333ff', '#0d0887','#9999ff'] ,width=500,height=500))
     
-fig = go.Figure()
 out2 = df.groupby('Customer ID', as_index=False, sort=False).agg({'Sales':'sum','Profit':'sum'})
 Cust_above_avg=out2[out2['Sales']>=out2['Sales'].mean()]
 
-c=fig.add_trace(
+fig = go.Figure()
+
+fig.add_trace(
     go.Scatter(
         y=Cust_above_avg['Sales'],
         x=Cust_above_avg['Customer ID']
@@ -46,4 +47,5 @@ fig.add_trace(
         x=Cust_above_avg['Customer ID']
     ))
 
-st.ploly_chart(c)
+fig.show()
+st.plotly_chart(fig)
