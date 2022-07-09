@@ -38,7 +38,7 @@ fig = go.Figure()
 fig.add_trace(
     go.Scatter(
         y=Cust_above_avg['Sales'],
-        x=Cust_above_avg['Customer ID'],color='#3333ff'))
+        x=Cust_above_avg['Customer ID']))
 
 fig.add_trace(
     go.Bar(
