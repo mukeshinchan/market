@@ -36,14 +36,14 @@ Cust_above_avg=out2[out2['Sales']>=out2['Sales'].mean()]
 fig = go.Figure()
 
 fig.add_trace(
-    px.line(Cust_above_avg,
-        y='Sales',
-        x='Customer ID'))   
-     
+    go.Scatter(
+        y=Cust_above_avg['Sales'],
+        x=Cust_above_avg['Customer ID'],color='#3333ff'))
+
 fig.add_trace(
-    px.bar(Cust_above_avg,
-        y='Sales',
-        x='Customer ID'))
+    go.Bar(
+        y=Cust_above_avg['Sales'],
+        x=Cust_above_avg['Customer ID'],color='#3333ff'))
 
 fig.update_layout(width=1200)
 fig.update_layout(height=650)
