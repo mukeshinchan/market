@@ -1,4 +1,4 @@
-import numerize.numerize
+from numerize import numerize
 import pandas as pd
 import plotly.express as px
 import streamlit as st
@@ -26,7 +26,7 @@ df['year']=df['Order Date'].dt.year
 year=list(df['year'].unique())
 region=list(df['Region'].unique())
 df['Month_num']=df['Order Date'].dt.month
-df['Month']=df['Order Date'].dt.strftime('%m')
+df['Month']=df['Order Date'].dt.month_name()
 
 
 
@@ -136,8 +136,7 @@ with butter.container():
         
 data=df[df['year']==year_value]
 out2= data.groupby(['Month','Month_num'], as_index=False, sort=False).agg({'Sales':'sum'}).sort_values(by='Month_num')
-fig7=px.line(out2,x='Month',y='Sales',width=1200,height=750,text='Sales')
-fig7.update_traces(textposition="top right")
+fig7=px.bar(out2,x='Month',y='Sales',color='Month',width=1200,height=750,text='Sales')
 fig7.update_layout(xaxis=dict(showgrid=False),yaxis=dict(showgrid=False))
 fig7.update_layout({'plot_bgcolor':'rgba(0,0,0,0)','paper_bgcolor':'rgba(0,0,0,0)'})
 st.plotly_chart(fig7)   
