@@ -1,5 +1,4 @@
-#import pycountry 
-from numerize import numerize
+import numerize.numerize
 import pandas as pd
 import plotly.express as px
 import streamlit as st
