@@ -38,7 +38,7 @@ select=option_menu(
     icons=['house-fill','bag-dash-fill','currency-exchange','percent'] ,
     orientation='horizontal',
     default_index=1,
-    menu_icon=['clipboard-data-fill']
+    menu_icon=['clipboard-data']
     )
 
     
