@@ -1,4 +1,4 @@
-import numerize.numerize
+from numerize import numerize
 import pandas as pd
 import plotly.express as px
 import streamlit as st
