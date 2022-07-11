@@ -1,3 +1,4 @@
 pandas==1.4.3
 plotly==5.9.0
 streamlit==1.10.0
+numerize==0.12
