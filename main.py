@@ -162,7 +162,14 @@ if select=='Sales':
     
 if select == 'Home':
     st.dataframe(df)
-    st.dataframe(df.describe())
+    chart=st.empty()
+    with chart.container():
+        tbl1,tbl2=st.columns(2)
+        with tbl1:
+            st.dataframe(df.describe())
+        with tbl2:
+            unique=pd.DataFrame(df.nunique())
+            st.plotly_chart(px.bar(unique,text_auto=True))
     st.write('''Order ID: Each order receives its own Order ID
 
 Ship Date:The definition of ship date is the date that the order is shipped from the seller or warehouse to the customer.
