@@ -187,16 +187,51 @@ if select =='Profit':
             sub_value=st.selectbox('Select Sub-Category',sub_list)
     with kpi_pro.container():
          kpi1, kpi2, kpi3 = st.columns(3)
-         kpi=df[df['Segment']==Segment_value]
-         t=kpi['Profit'].sum()
+         kpi_1=df[df['Segment']==Segment_value]
+         t=kpi_1['Profit'].sum()
+         h=(numerize.numerize(t))
+         seg_pro=int(h[:-1])
+         
          with kpi1:
              fig1 = go.Figure(go.Indicator(
                     mode = "gauge+number",
-                    value = t,
-                    title = {'text': "Speed"},
-                    domain = {'x': [0, 1], 'y': [0, 1]}
+                    value = seg_pro,
+                    title = {'text': f"Profit by {Segment_value}"},
+                    gauge= {'axis': {'range': [None, seg_pro+seg_pro*0.5]},'steps' : [{'range': [0, seg_pro/2], 'color': "royalblue"},
+                 {'range': [seg_pro/2,(seg_pro)*(90/100)], 'color': "gray"}],
+             'threshold' : {'line': {'color': "red", 'width': 4}, 'thickness': 0.75, 'value': seg_pro}}
                 )) 
+             fig1.update_layout(width=400,height=400)
              st.plotly_chart(fig1)
+         with kpi2:
+             kpi_2=df[df['Category']==cat_value]
+             t=kpi_2['Profit'].sum()
+             h=(numerize.numerize(t))
+             cat_pro=int(h[:-1])
+             fig2 = go.Figure(go.Indicator(
+                    mode = "gauge+number+delta",
+                    gauge={'shape':'bullet'},
+                    value = cat_pro,
+                    title = {'text': "Speed"},
+                ))
+             fig2.update_layout(width=400,height=400) 
+             st.plotly_chart(fig2)
+         with kpi3:
+             kpi_3=df[df['Sub-Category']==sub_value]
+             sub_pro=kpi_3['Profit'].sum()
+             fig3 = go.Figure(go.Indicator(
+                    mode = "gauge+number",
+                    value = sub_pro,
+                    title = {'text': "Speed"},
+                    
+                )) 
+             fig3.update_layout(width=400,height=400) 
+             st.plotly_chart(fig3)
+            
+            
+            
+       
+             
          
         
     st.error('Working in Progress')
