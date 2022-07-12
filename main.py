@@ -39,20 +39,16 @@ select=option_menu(
     options=['Home','Sales','Profit','Discount'],
     icons=['house-fill','bag-dash-fill','currency-exchange','percent'] ,
     orientation='horizontal',
-    default_index=1,
+    default_index=2,
     menu_icon=['clipboard-data']
     )
 
-    
-
+out = df.groupby(['Category','Sub-Category','year','Country','Region','Customer ID','Segment','Month'], as_index=False, sort=False).agg({'Sales':'sum','Profit':'sum'})
 
 if select=='Sales':
     
     filters=st.empty()
     placeholder=st.empty()
-
-    out = df.groupby(['Category','Sub-Category','year','Country','Region','Customer ID','Segment','Month'], as_index=False, sort=False).agg({'Sales':'sum','Profit':'sum'})
-
 
     with filters.container():
         fil1, fil2, fil3 = st.columns(3)
@@ -133,7 +129,7 @@ if select=='Sales':
         with bar2:
             data2=out[(out['year']==year_value) & (out['Country']==country_value) & (out['Region']==region_value)].sort_values(by='Profit',ascending=False).head(range_value)
             fig5=px.bar(data2,x='Profit',y='Customer ID',color='Customer ID',text_auto=True)
-            fig5.update_yaxes(visible=True, showticklabels=True)
+            fig5.update_yaxes(title='', visible=True, showticklabels=True)
             fig5.update_layout(xaxis=dict(showgrid=False),yaxis=dict(showgrid=False))
             fig5.update_layout(title_text=f'& Profit',title_x=0.2)
             #fig4.update_xaxes(title='x', visible=False, showticklabels=False)
@@ -177,9 +173,8 @@ if select == 'Home':
     text=pd.read_csv('columns.txt',sep = '\t')
     st.write(text)
 if select =='Profit':
-    
     filters=st.empty()
-    placeholder=st.empty()
+    kpi_pro=st.empty()
     with filters.container():
         fil1, fil2, fil3 = st.columns(3)
         with fil1:
@@ -190,8 +185,20 @@ if select =='Profit':
             sub_list=list(cotext_sub_cat['Sub-Category'].unique())
         with fil3:
             sub_value=st.selectbox('Select Sub-Category',sub_list)
-
-    
+    with kpi_pro.container():
+         kpi1, kpi2, kpi3 = st.columns(3)
+         kpi=df[df['Segment']==Segment_value]
+         t=kpi['Profit'].sum()
+         with kpi1:
+             fig1 = go.Figure(go.Indicator(
+                    mode = "gauge+number",
+                    value = t,
+                    title = {'text': "Speed"},
+                    domain = {'x': [0, 1], 'y': [0, 1]}
+                )) 
+             st.plotly_chart(fig1)
+         
+        
     st.error('Working in Progress')
 if select=='Discount':
     st.error('Working in Progress')
