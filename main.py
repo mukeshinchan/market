@@ -168,51 +168,10 @@ if select == 'Home':
         with tbl1:
             st.dataframe(df.describe())
         with tbl2:
+            text=df = pd.read_csv('columns.txt',sep = '\t')
             unique=pd.DataFrame(df.nunique())
             st.plotly_chart(px.bar(unique,text_auto=True))
-    st.write('''Order ID: Each order receives its own Order ID
-
-Ship Date:The definition of ship date is the date that the order is shipped from the seller or warehouse to the customer.
-
-Ship Mode : The shipping mode is a way of shipping goods. More specifically, a shipping mode is the combination of a shipping carrier and the shipping service that is offered by that carrier.That column have a three types of mode (Standard Class,Second Class,Same Day, First Class)
-
-Customer ID: Customer ID means the unique means of identification allocated to or selected by the Customer in relation to any one or more of the Services whether in the form of a password, PIN or other form of personal identification, or any combination of any of them.
-
-Customer Name: Name of the Perion who purchase the product
-
-Segment :In marketing, market segmentation is the process of dividing a broad consumer into sub-groups of consumers based on some type of shared characteristics
-
-City:The definition of a city is a town of significant size or an urban area with self-government
-
-State:State is defined as a territory with its own government and borders within a larger country
-
-Country:A country is defined as a nation, the people of the nation or land in a rural area
-
-Postal Code:A postal code is a series of letters or digits or both, sometimes including spaces or punctuation, included in a postal address for the purpose of sorting mail
-
-Market:A marker identifies a location on a map
-
-Region : A region is a large area of land that is different from other areas of land
-
-Product ID : Product identifiers are a series of numerical or alphanumerical digits that are used to identify a specific product
-
-Category :The definition of a category is any sort of division or class
-
-Sub-Category: A category that is a subdivision of a larger category
-
-Product Name: A product name identifies a specific product
-
-Sales : Sales are activities related to selling or the number of goods sold in a given targeted time period
-
-Quantity : an indefinite amount or number
-
-Discount :A discount is the reduction of either the monetary amount or a percentage of the normal selling price of a product or service
-
-Profit : Profit is the money a business pulls in after accounting for all expenses
-
-Shipping Cost: Just weigh the package and use a shipping cost calculator to get a shipping price
-
-Order Priority:Order of Priority means, in respect of any payment to be made by the Issuer before the Enforcement Date''')
+    st.write()
 if select =='Profit':
     st.error('Working in Progress')
 if select=='Discount':
