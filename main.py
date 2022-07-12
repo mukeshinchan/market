@@ -28,6 +28,9 @@ year=list(df['year'].unique())
 region=list(df['Region'].unique())
 df['Month_num']=df['Order Date'].dt.month
 df['Month']=df['Order Date'].dt.month_name()
+Segment=list(df['Segment'].unique())
+cat=list(df['Category'].unique())
+Sub=list(df['Sub-Category'].unique())
 
 st.header('SALES DASHBOARD')
 
@@ -130,7 +133,7 @@ if select=='Sales':
         with bar2:
             data2=out[(out['year']==year_value) & (out['Country']==country_value) & (out['Region']==region_value)].sort_values(by='Profit',ascending=False).head(range_value)
             fig5=px.bar(data2,x='Profit',y='Customer ID',color='Customer ID',text_auto=True)
-            fig5.update_yaxes(title='y', visible=True, showticklabels=True)
+            fig5.update_yaxes(visible=True, showticklabels=True)
             fig5.update_layout(xaxis=dict(showgrid=False),yaxis=dict(showgrid=False))
             fig5.update_layout(title_text=f'& Profit',title_x=0.2)
             #fig4.update_xaxes(title='x', visible=False, showticklabels=False)
@@ -168,11 +171,27 @@ if select == 'Home':
         with tbl1:
             st.dataframe(df.describe())
         with tbl2:
-            text=df = pd.read_csv('columns.txt',sep = '\t')
             unique=pd.DataFrame(df.nunique())
             st.plotly_chart(px.bar(unique,text_auto=True))
-    st.write()
+            
+    text=pd.read_csv('columns.txt',sep = '\t')
+    st.write(text)
 if select =='Profit':
+    
+    filters=st.empty()
+    placeholder=st.empty()
+    with filters.container():
+        fil1, fil2, fil3 = st.columns(3)
+        with fil1:
+            Segment_value= st.selectbox('Select Segment',Segment)
+        with fil2:
+            cat_value=st.selectbox('Select Category',cat)
+            cotext_sub_cat=df[df['Category']==cat_value]
+            sub_list=list(cotext_sub_cat['Sub-Category'].unique())
+        with fil3:
+            sub_value=st.selectbox('Select Sub-Category',sub_list)
+
+    
     st.error('Working in Progress')
 if select=='Discount':
     st.error('Working in Progress')
