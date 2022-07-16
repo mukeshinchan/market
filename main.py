@@ -207,12 +207,12 @@ if select =='Profit':
              kpi_2=df[df['Category']==cat_value]
              t=kpi_2['Profit'].sum()
              h=(numerize.numerize(t))
-             cat_pro=int(h[:-1])
+             cat_pro=float(h[:-1])
              fig2 = go.Figure(go.Indicator(
                     mode = "gauge+number+delta",
                     gauge={'shape':'bullet'},
                     value = cat_pro,
-                    title = {'text': "Speed"},
+                    title = {'text': ""},
                 ))
              fig2.update_layout(width=400,height=400) 
              st.plotly_chart(fig2)
@@ -222,18 +222,12 @@ if select =='Profit':
              fig3 = go.Figure(go.Indicator(
                     mode = "gauge+number",
                     value = sub_pro,
-                    title = {'text': "Speed"},
+                    title = {'text': ""},
                     
                 )) 
              fig3.update_layout(width=400,height=400) 
              st.plotly_chart(fig3)
             
-            
-            
-       
-             
-         
-        
     st.error('Working in Progress')
 if select=='Discount':
     st.error('Working in Progress')
