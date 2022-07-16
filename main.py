@@ -39,7 +39,7 @@ select=option_menu(
     options=['Home','Sales','Profit','Discount'],
     icons=['house-fill','bag-dash-fill','currency-exchange','percent'] ,
     orientation='horizontal',
-    default_index=2,
+    default_index=1,
     menu_icon=['clipboard-data']
     )
 
